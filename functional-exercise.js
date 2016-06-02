@@ -20,14 +20,17 @@ doer(function(info) {
         whatAmIDoing);
 });
 
-function printWhatImDoing(msg) {
-  return function(info) {
-    console.log('Stuff being done by IP: ' +
-        info.ip + ' | ' + ' created at ' + 
-        info.createdAt + ' what I did : ' +
-        msg);
-  }
-}
+//const printWhatImDoing = msg => info => console.log('Stuff being done by IP: ' +
+//        info.ip + ' | ' + ' created at ' + 
+//        info.createdAt + ' what I did : ' +
+//        msg);
+
+const printWhatImDoing = msg => info => 
+  console.log(`Stuff being done by IP: ${info.ip} | created at ${info.createdAt} what I did : ${msg}`);
 
 doer(printWhatImDoing('logging stuff'));
 doer(printWhatImDoing('logging other stuff'));
+
+//let template = `
+//  <button>{{$scope.buttonName}}</button>
+//`;
