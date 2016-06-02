@@ -24,6 +24,6 @@ function printWhatImDoing(msg) {
 
 }
 
-//doer(printWhatImDoing('logging stuff');
-//doer(printWhatImDoing('logging other stuff');
+doer(printWhatImDoing('logging stuff'));
+doer(printWhatImDoing('logging other stuff'));
 
