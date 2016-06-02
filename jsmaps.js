@@ -1,7 +1,7 @@
 'use strict';
 // everything in javascript is a map
 // even a function
-// everything attached to the map, will be converted toString
+// everything attached to the map, will have it's key converted toString
 
 let a = {};
 let c, d;
