@@ -21,9 +21,13 @@ doer(function(info) {
 });
 
 function printWhatImDoing(msg) {
-
+  return function(info) {
+    console.log('Stuff being done by IP: ' +
+        info.ip + ' | ' + ' created at ' + 
+        info.createdAt + ' what I did : ' +
+        msg);
+  }
 }
 
 doer(printWhatImDoing('logging stuff'));
 doer(printWhatImDoing('logging other stuff'));
-
