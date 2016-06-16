@@ -1,4 +1,4 @@
-export default function $http(url, callback) {
+module.exports = function $http(url, callback) {
   // use your imagination 
   // and think of this as a server side call which returns at a later time
 
