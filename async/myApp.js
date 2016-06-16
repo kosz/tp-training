@@ -8,16 +8,22 @@ const $success = require('./success');
 // maintain, read, understand
 
 let receivedData = '';
-$http('localhost:3003', function(data) {
-  receivedData = data;
-  console.log('receivedData', receivedData);
-  $animate(receivedData, function() {
-    console.log('everything finished executing');
-    $success(receivedData, () => {
-      console.log(`ok now i'm really finished`);
-    });
-  });
-});
+//function callback(data) {
+//  receivedData = data;
+//  console.log('receivedData', receivedData);
+//  $animate(receivedData, function() {
+//    console.log('everything finished executing');
+//    $success(receivedData, () => {
+//      console.log(`ok now i'm really finished`);
+//    });
+//  });
+//}
+
+$http('localhost:3003')
+  .then((data) => {
+    receivedData = data;
+    console.log('receivedData =', data);
+  });;
 
 console.log('starting with receivedData BEFORE calling $http', receivedData);
 
