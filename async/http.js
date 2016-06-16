@@ -1,3 +1,4 @@
+const randomize = require('./randomizer');
 module.exports = function $http(url) {
   // use your imagination 
   // and think of this as a server side call which returns at a later time
@@ -8,6 +9,10 @@ module.exports = function $http(url) {
         a: 'one',
         b: 'two'
       };
+      
+      if(randomize()) {
+        reject('this is my error message sent by reject');
+      }
 
       resolve(mockData);
       console.log(`url was hit ${url}`);
