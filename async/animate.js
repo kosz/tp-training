@@ -5,8 +5,10 @@
 // however under node v 6.0 we need to use 
 //  module.exports 
 module.exports = function $animate (data, callback) {
-  setTimeout(() => {
-    console.log('animating', data);
-    callback();
-  }, 1000);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log('animating', data);
+      resolve(data);
+    }, 1000);
+  });
 }
