@@ -27,13 +27,13 @@ let reducedSum = list.reduce((prev, curr) => prev + curr);
 console.log('sum', reducedSum);
 
 
-// take all numbers smaller than 4 
-// add 5 to all of them 
+// take all numbers smaller than 4
+// add 5 to all of them
 // return the sum of what's left
 //
 
 
-let finalValue = 
+let finalValue =
   list
     .filter(item => item < 4)
     .map(item => item + 5)
@@ -57,3 +57,9 @@ let buildProductTemplate = (product) => {
 }
 
 // get a single html string which prints all electronic product
+let electronicList =
+  listOfProducts
+    .filter(item => item.type == "electronics")
+    .map(item => buildProductTemplate(item))
+    .reduce((prev,curr) => prev + curr);
+console.log(electronicList);
