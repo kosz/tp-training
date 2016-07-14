@@ -1,24 +1,71 @@
 'use strict';
 
-function Observable() {
-  let self = this;
-  let value;
-  let subscribers = [];
+// function Observable() {
+//   let self = this;
+//   let value;
+//   let subscribers = [];
+//
+//   self.subscribe = function(fn) {
+//     subscribers.push(fn);
+//   };
+//
+//   self.setValue = function(val) {
+//     value = val;
+//     subscribers.forEach(function(fun) {
+//       fun(val);
+//     });
+//   }
+//
+// }
 
-  self.subscribe = function(fn) {
-    subscribers.push(fn); 
-  };
+class Observable {
 
-  self.setValue = function(val) {
-    value = val;
-    subscribers.forEach(function(fun) {
+  constructor() {
+      this.value = {};
+      this.subscribers = [];
+  }
+
+  setValue(val) {
+    this.value = val;
+    this.subscribers.forEach(function(fun) {
       fun(val);
     });
+  }
+
+  subscribe(fn) {
+  this.subscribers.push(fn);
   }
 
 }
 
 let obs = new Observable();
+
+class Controller {
+  constructor() {
+      this.hello = "hello";
+      //obs.subscribe(this.observer.bind(this));
+      obs.subscribe(this.observer.bind(this));
+      // when passing a function to another function
+      // expecting the passed function to be executed later on in another
+      // execution context, then the `this` referece inside the passed function
+      // will be lost, unless if we specifically bind the function's `this`
+      // to a certain object, in this case `this`
+  }
+
+  // when defined as a function ( non arrow function )
+  // the `this` value inside will reflect the current exeuction context
+  // you are not guarnateed in javascript that the `this` inside a
+  // class's function will remain a reference to the instance of that class
+  // unless, if you use .bind(this), on the function before passing it
+
+  // keep in mind that .bind(this) will actually return a NEW function
+  observer (value) {
+    console.log(`${this.hello} ${value}`);
+  }
+
+}
+
+let ctrl = new Controller();
 
 function observer1 (val) {
   console.log('observer 1 reacting', val);
@@ -31,11 +78,11 @@ function observer2 (val) {
 obs.subscribe(observer1);
 obs.subscribe(observer2);
 
-obs.setValue('Hello');
+obs.setValue('Hallo');
 //
 // function($scope, userReactiveStore) {
 //   userReactiveStore.subscribe(function(val) {
 //     $scope.user = val;
 //   });
 //
-// 
+//
